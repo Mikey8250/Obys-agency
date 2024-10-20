@@ -42,5 +42,24 @@ function loadingAnimation() {
   tl.to("#loader", {
     display: "none",
   });
+  tl.from("#nav", {
+    opacity: 0,
+  });
+  tl.from("#hero1 h1, #hero2 h1, #hero3 h2, #hero4 h1", {
+    y: 120,
+    stagger: 0.2,
+  });
 }
 loadingAnimation();
+
+function cursorAnimation() {
+  document.addEventListener("mousemove", (event) => {
+    gsap.to("#crsr", {
+      left: event.x - 10, //----> X and y are the cordinates in which the event(mouse is moving)
+      top: event.y - 10,
+    });
+  });
+
+  Shery.makeMagnet("#nav-part2 h4", {});
+}
+cursorAnimation();
