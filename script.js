@@ -49,6 +49,9 @@ function loadingAnimation() {
     y: 120,
     stagger: 0.2,
   });
+  tl.to(".hero", {
+    overflow: "visible", // Clear overflow: hidden after animation completes
+  });
 }
 loadingAnimation();
 
