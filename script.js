@@ -88,11 +88,12 @@ function loadingAnimation() {
     y: 120,
     stagger: 0.2,
   });
-  tl.to(".hero", {
-    overflow: "visible", // Clear overflow: hidden after animation completes
-  });
   tl.to("#main", {
     backgroundColor: "#151515",
+    duration: 0.01,
+  });
+  tl.to(".hero", {
+    overflow: "visible", // Clear overflow: hidden after animation completes
   });
 }
 function cursorAnimation() {
@@ -182,25 +183,51 @@ function sheryAnimation() {
     },
   });
 }
+
+function flagAnimation() {
+  document.addEventListener("mousemove", function (dets) {
+    gsap.to("#flag", {
+      x: dets.x,
+      y: dets.y,
+    });
+  });
+  document.querySelector("#hero3").addEventListener("mouseenter", function () {
+    gsap.to("#flag", {
+      opacity: 1,
+    });
+  });
+  document.querySelector("#hero3").addEventListener("mouseleave", function () {
+    gsap.to("#flag", {
+      opacity: 0,
+    });
+  });
+}
+
+// Define the animation function
+function animateFooterText() {
+  $("#footer h1").textillate({
+    autoStart: false, // Prevents animation on load
+    in: { effect: "rollIn" },
+  });
+
+  // Stop any initial animation and ensure text is visible
+  $("#footer h1").textillate("stop");
+
+  // Start the animation on hover
+  $("#footer h1").textillate("start");
+}
+
+// Add hover event to call the animation function
+$("#footer h1").on("mouseenter", function () {
+  animateFooterText();
+});
+
+// Call the function to set up the animation
+
+// Call the function to set up the animation
+
 loadingAnimation();
 cursorAnimation();
 locomotiveAnimation();
 sheryAnimation();
-
-document.addEventListener("mousemove", function (dets) {
-  gsap.to("#flag", {
-    x: dets.x,
-    y: dets.y,
-  });
-});
-
-document.querySelector("#hero3").addEventListener("mouseenter", function () {
-  gsap.to("#flag", {
-    opacity: 1,
-  });
-});
-document.querySelector("#hero3").addEventListener("mouseleave", function () {
-  gsap.to("#flag", {
-    opacity: 0,
-  });
-});
+flagAnimation();
